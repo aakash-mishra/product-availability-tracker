@@ -1,6 +1,5 @@
 package aakash.ProductAvailabilityTracker;
 
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.jsoup.Jsoup;
@@ -42,7 +41,10 @@ public class AvailabilityTracker {
                 String productId = tokens[0];
                 String[] subscribers = tokens[1].split(",");
                 String url = "https://amazon.in/dp/" + productId;
-                Document document = Jsoup.connect(url).get();
+                Document document = Jsoup.connect(url).
+                        userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.38 Safari/537.36")
+                        .get();
+
                 String statusString = document.getElementById("availability").text();
                 String productName = document.getElementById("productTitle").text();
                 LOG.info("Product name is: " + productName);
