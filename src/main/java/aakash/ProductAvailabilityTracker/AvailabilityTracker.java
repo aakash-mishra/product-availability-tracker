@@ -42,7 +42,8 @@ public class AvailabilityTracker {
                 String[] subscribers = tokens[1].split(",");
                 String url = "https://amazon.in/dp/" + productId;
                 Document document = Jsoup.connect(url).
-                        userAgent("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/40.0.2214.38 Safari/537.36")
+                        header("user-agent", "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36")
+                        .userAgent("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/78.0.3904.87 Safari/537.36")
                         .get();
 
                 String statusString = document.getElementById("availability").text();
